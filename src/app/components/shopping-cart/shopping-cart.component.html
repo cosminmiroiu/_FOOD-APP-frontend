@@ -1,0 +1,55 @@
+<h1 class="pageTitle">
+    <img class="shoppingCartPic" src="assets\images\others\shopping-cart.png" alt="Shopping Cart">
+    Shopping Cart
+</h1>
+
+
+<ng-container *ngIf="cartItems.length > 0">
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+        <div class="cart-table">
+                <table class="table">
+                    <thead style="font-size: large;">
+                        <tr style="vertical-align: baseline;">
+                            <th style="width: 15%;">Product Name</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="font-size:large; vertical-align: baseline;">
+                        <tr *ngFor="let tempCartItem of cartItems">
+                            <td>{{tempCartItem.productName}}</td>
+                            <td><img src="{{tempCartItem.productImageUrl}}" style="height: 130px; width: auto;"></td>
+                            <td><del *ngIf="tempCartItem.productDiscountPercent > 0">{{tempCartItem.productUnitPrice | currency: 'RON '}}<br></del>{{tempCartItem.finalPrice / tempCartItem.quantity | currency: 'RON '}}</td>
+                            <td>{{tempCartItem.productDiscountPercent}}%</td>
+                            <td>{{tempCartItem.quantity}}</td>
+                            <td><strong>{{tempCartItem.finalPrice | currency: 'RON '}}</strong></td>
+                            <td>
+                                <button class="btn btn-danger" (click)="removeItemFromCart(tempCartItem)">Remove</button>
+                            </td>
+                        </tr>
+                        <tr style="vertical-align: baseline;">
+                            <td colspan="3"></td>
+                            <td><button class="btn btn-danger" (click)="emptyCart();" style="min-width: 115px;">Empty Cart</button></td>
+                            <td><button class="btn btn-primary" routerLink="/restaurant/{{cartItems[0].restaurantId}}" style="min-width: 115px;">Shop More</button></td>
+                            <td><button class="btn btn-success" style="min-width: 115px;" (click)="goToCheckout()">Checkout</button></td>
+                            <td style="font-size: 19px; text-transform: none;">Total price: <strong>{{totalPriceValue | currency: 'RON '}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="cartItems.length < 1">
+        <div class="center">
+            <h2 style="font-weight: bold;">Ups...shopping cart is empty!</h2>
+            <h3>Add products to cart</h3>
+            <button class="button" routerLink="/restaurants">Go to restaurants</button>
+        </div>
+</ng-container>

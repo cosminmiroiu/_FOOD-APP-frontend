@@ -1,0 +1,227 @@
+* {
+    font-family: 'Quicksand';
+}
+
+h6 {
+    font-size: 18px;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    border: 1px solid;
+    color: rgb(255, 136, 0);
+    white-space: nowrap;
+}
+
+.imgTitle {
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.imgTitle img {
+    width: 125px;
+    border-radius: 50%;
+}
+
+.imgTitle span {
+    font-size: 40px;
+    margin-left: 3%;
+}
+
+.logoutSpan {
+    font-size: 30px;
+    cursor: pointer;
+    padding-bottom: 25px;
+    transition: 0.2s ease-in-out;
+}
+
+.logoutSpan:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+.utilityBar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    top: -1px;
+    width: 100%;
+    height: 45px;
+    border: 1px solid rgb(255, 136, 0);
+}
+
+.utilityBar span {
+    font-size: 18px;
+    margin-left: 1%;
+}
+
+.utilityBar hr {
+    height: 100%; 
+    width: 1px; 
+    color: coral; 
+    margin-left: 1%;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    margin-left: 1%;
+}
+
+.checkboxLabel {
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.button {
+    position: relative;
+    width: 92.5%;
+    height: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 5px;
+    border: 2px rgb(255, 136, 0) solid;
+    color: rgb(255, 136, 0);
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.05s ease-in-out;
+    z-index: 2;
+}
+
+.button:hover {
+    color: white;
+    background-color: rgb(255, 136, 0);
+}
+  
+.button:active {
+    background-color: burlywood;
+    border: 2px burlywood solid;
+}
+
+
+.principalContainer {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.ordersContainer {
+    max-width: 60%;
+    min-width: 60%;
+    height: 100%;
+    margin-left: 2%;
+    margin-top: 2%;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 10px;
+}
+
+.row{
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 0.5% 0.5% 2% 0.5%;
+    margin: 0.5%
+}
+
+.orderCard {
+    position: relative;
+    width: 250px;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    white-space: normal;
+    z-index: 0;
+}
+
+.orderCard:hover {
+    transform: scale(1.1);
+}
+
+.selected {
+    position: relative;
+    background-color: rgb(255, 136, 0);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    height: 25px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.orderDetailsContainer {
+    width: 25%;
+    min-width: 300px;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.orderDetailsTable {
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 5px;
+    margin: 25px;
+}
+
+.containerTitle {
+    text-align: center;
+    color: rgb(255, 136, 0);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.normalShadow {
+    position: absolute;
+    box-shadow: 0 0 15px 0 rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.redShadow {
+    position: absolute;
+    box-shadow: 0 0 15px 0 rgb(196, 13, 13);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+    z-index: 1;
+}

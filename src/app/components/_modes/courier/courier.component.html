@@ -1,0 +1,173 @@
+<!-- HEADER -->
+<div class="pageHeader">
+    <div class="imgTitle">
+        <img src="assets\images\others\courier.png" alt="Courier">
+        <span>Food App - Courier Mode</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 2%;">
+        <mark style="background-color: rgb(255, 212, 196);">
+            <span style="font-size: 20px;">Logged in as {{userFullName}}</span>
+        </mark>
+
+        <span class="logoutSpan" (click)="logout()">
+            Logout
+        </span>
+    </div>
+</div>
+
+<!-- UTILITY BAR -->
+<div class="utilityBar">
+    
+    <input type="checkbox" id="autoRefresh" checked class="checkbox" (click)="autoRefresh()">
+    <label for="autoRefresh" id="refreshLabel" class="checkboxLabel" style="width: 175px;">Auto refresh ( {{refreshTime}} sec )</label>
+
+    <hr>
+
+    <input type="checkbox" id="autoAccept" name="interest" unchecked class="checkbox" (click)="autoAcceptOrders()">
+    <label for="autoAccept" class="checkboxLabel">Auto accept orders when available</label>
+
+    <hr>
+
+    <span>Total orders placed today: <b>{{allOrdersToday}}</b></span>
+
+    <span style="margin-left: auto;"><b>Your activity today (orders)</b></span>
+
+    <hr>
+
+    <span>Accepted: <b>{{acceptedOrdersTodayByCourier}}</b></span>
+
+    <hr>
+
+    <span>Delivered: <b>{{deliveredOrdersTodayByCourier}}</b></span>
+
+    <hr>
+
+    <span style="margin-right: 1%;">Rejected by restaurants: <b>{{rejectedOrdersTodayByCourier}}</b></span>
+    
+</div>
+
+
+<!-- TABLE CONTAINERS -->
+<div style="width: 100%; display: flex; justify-content: space-evenly; align-items: flex-start; margin-top: 3%; margin-bottom: 3%;">
+
+    <!-- AVAILABLE ORDERS CONTAINER -->
+    <div style="width: 25%; min-width: 500px; border-radius: 5px; padding: 25px 25px 35px 25px; box-shadow: 0 0 5px 0 black;">
+
+        <h2 style="color: rgb(255, 136, 0); text-align: center; margin-top: 2%; margin-bottom: 2%;">
+            Available Orders ( {{availableOrders.length}} )
+        </h2>
+
+        <h3 *ngIf="availableOrders.length < 1" style="text-align: center; margin-top: 5%;">
+            No available orders right now. Stay focus.
+        </h3>
+
+        <!-- CARDS CONTAINER -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+
+            <!-- CARDS -->
+            <div *ngFor="let tempOrder of availableOrders" class="card">
+
+                <div>
+                    <h5 style="font-size: 22px; margin-bottom: 20px; text-align: center;">
+                        <b>Order {{tempOrder.id}}</b>
+                    </h5>
+                    
+                    <h6>
+                        Product qty: <strong>{{tempOrder.totalQuantity}}</strong>
+                    </h6>
+
+                    <h6>
+                        Restaurant: <strong>{{getRestaurantName(tempOrder.restaurantId)}}</strong>
+                    </h6>
+
+                    <h6>
+                        Location: <strong>{{getRestaurantAddress(tempOrder.restaurantId)}}</strong>
+                    </h6>
+
+                    <h6 style="padding-bottom: 35px;">
+                        Placed: <strong>{{getOrderPassedTime(tempOrder.dateCreated)}}</strong>
+                    </h6>
+                </div>
+
+                <img class="restaurantPic" src="{{getRestaurantImageUrl(tempOrder.restaurantId)}}" alt="Restaurant">
+                <button class="button" (click)="acceptOrder(tempOrder.id)">Accept To Deliver This Order →</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MY ORDERS CONTAINER -->
+    <div style="width: 25%; min-width: 550px; border-radius: 5px; padding: 25px 25px 35px 25px; box-shadow: 0 0 10px 0 rgb(226, 60, 60);">
+
+        <h2 style="color: rgb(255, 136, 0); text-align: center; margin-top: 2%; margin-bottom: 2%;">
+            Accepted Orders ( {{courierOrders.length}} )
+        </h2>
+
+        <h3 *ngIf="courierOrders.length < 1" style="text-align: center; margin-top: 5%;">
+            There are no orders accepted by you right now.
+        </h3>
+
+        <!-- ORDER CONTAINER -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+
+            <!-- CARDS -->
+            <div *ngFor="let tempOrder of courierOrders" class="card" style="width: 450px; min-width: 450px;">
+                
+                <div>
+                    <h5 style="font-size: 22px; margin-bottom: 20px; text-align: center;">
+                        <b>Order {{tempOrder.id}}</b>
+                    </h5>
+
+                    <h6 *ngIf="tempOrder.status != 'DELIVERING...'">
+                        Product qty: <strong>{{tempOrder.totalQuantity}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status != 'PREPARING...'">
+                        Price: <strong>{{tempOrder.totalPrice | currency: 'RON '}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status != 'DELIVERING...'">
+                        Placed: <strong>{{getOrderPassedTime(tempOrder.dateCreated)}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status == 'PREPARING...'">
+                        Assigned to you: <strong>{{getOrderPassedTime(tempOrder.dateUpdated)}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status == 'DELIVERING...'">
+                        Picked: <strong>{{getOrderPassedTime(tempOrder.dateUpdated)}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status == 'PREPARING...'">
+                        Pick from: <strong>{{getRestaurantAddress(tempOrder.restaurantId)}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status == 'DELIVERING...'">
+                        Client address: <strong>{{tempOrder.shippingAddress}}</strong>
+                    </h6>
+
+                    <h6 *ngIf="tempOrder.status == 'DELIVERING...'">
+                        Client phone: <strong>{{tempOrder.phoneNumber}}</strong>
+                    </h6>
+
+                    <h6 style="padding: 12px 0px 50px 0px; text-align: center;">
+                        <mark style="background-color: rgb(255, 193, 122); border-radius: 10px; padding-bottom: 6px;">current step: <strong>{{getNextAction(tempOrder)}}</strong></mark>
+                    </h6>
+                </div>
+
+                <img class="restaurantPic" src="{{getRestaurantImageUrl(tempOrder.restaurantId)}}" alt="Restaurant">
+                <button *ngIf="tempOrder.status == 'PREPARING...'" class="button" (click)="pickOrder(tempOrder.id)">Confirm Order Pick Up ↑</button>
+                <button *ngIf="tempOrder.status == 'DELIVERING...'" class="button" (click)="deliverOrder(tempOrder.id)">Confirm Delivery ↓</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,40 @@
+* {
+    font-family: 'Quicksand';
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 136, 0);
+    transform: translateX(-2.3%);
+    font-size: 50px;
+}
+
+.forbiddenPic {
+    border-radius: 50%;
+    width: 100px;
+    height: auto;
+    transform: translateX(-30%) translateY(-20%);
+}
+
+.linkSuggestionBox {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+.linkSuggestion {
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(255, 136, 0);
+    cursor: pointer;
+    margin-top: -30px;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+.linkSuggestion:hover {
+    transform: rotate(-2.5deg) scale(1.1);
+  }

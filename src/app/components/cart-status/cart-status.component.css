@@ -1,0 +1,28 @@
+.shoppingCartPic {
+    width: 35px;
+    transition: 0.3s ease-in-out;
+    margin-right: 15%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.shoppingCartPic:hover {
+    transform: rotate(-5deg) scale(1.2);
+}
+
+.cartSection {
+    display: flex;
+    justify-content: center;
+}
+
+.cartSection span {
+    position: absolute;
+    cursor: default;
+    color: white;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 3%;
+    margin-top: 0.2%;
+}

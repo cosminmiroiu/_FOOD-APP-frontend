@@ -1,0 +1,61 @@
+<h1 class="pageTitle">
+    <img class="notePic" src="assets\images\others\note.png" alt="Shopping Cart">
+    Checkout
+</h1>
+
+
+
+<div class="container" id="checkoutForm" style="display: flex; justify-content: center; margin-top: 4%;">
+
+    <div class="card">
+
+        <h4 style="font-weight: bold;">Delivery info</h4>
+        <span>Address: <strong>{{userAddress}}</strong></span>
+        <span>Phone: <strong>{{userPhoneNumber}}</strong></span>
+        <span>Name: <strong>{{userName}}</strong></span>
+
+        <hr style="border: 1px solid coral;">
+
+        <h4 style="font-weight: bold;">Cost summary</h4>
+
+        <span>Product price: <strong>{{totalPrice | currency: 'RON '}}</strong> ( <strong>{{totalQuantity}}</strong> products )</span>
+
+        <span>Restaurant delivery price: <strong>{{restaurant.deliveryPrice | currency: 'RON '}}</strong></span>
+
+        <hr style="border: 1px solid coral;">
+
+        <h4 style="font-weight: bold;">Grand total</h4>
+
+        <span><strong>{{totalPrice + restaurant.deliveryPrice | currency: 'RON '}}</strong></span>
+
+        <hr style="border: 1px solid coral;">
+
+        <div class="container" style="margin-top: 3%;">
+            <div style="display: flex; justify-content: space-between;">
+                <button class="button" style="width: 30%;" (click)="placeOrder()">Place order</button>
+                <button class="button" style="width: 30%;" routerLink="/shopping-cart">Back to cart</button>
+                <button class="button" style="width: 30%;" routerLink="/restaurant/{{restaurant.id}}">Shop more</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="container" id="orderForm" style="display: none; flex-direction: column; align-items: center; margin-top: 4%;">
+
+    
+    <h2 style="padding-top: 4%; font-size: 44px;"><img src="assets\images\others\success.png" alt="Success" style="width: 150px; height: auto; padding-bottom: 30px; padding-right: 3%;">Order with id <b>{{receivedOrder}}</b> has been placed.</h2>
+    
+
+    <div class="linkSuggestionBox">
+        <h2 style="color: black; font-size: 40px; font-weight: bold;">check the order status <img style="width: 30px; padding-top: 50px;" src="assets\images\others\arrow.png" alt="Arrow"></h2>
+        <h2 class="linkSuggestion" routerLink="/orders">go to orders page</h2>
+
+        <h2 style="color: black; font-size: 40px; font-weight: bold;">back to home page <img style="width: 30px; padding-top: 50px;" src="assets\images\others\arrow.png" alt="Arrow"></h2>
+        <h2 class="linkSuggestion" routerLink="/home">go to home</h2>
+    </div>
+
+</div>

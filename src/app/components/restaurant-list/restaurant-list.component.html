@@ -1,0 +1,17 @@
+<h1 class="pageTitle">
+    <img class="cutleryPic" src="assets\images\others\cutlery.png" alt="Cuterly">
+    Restaurants
+</h1>
+
+<body class="container">
+    <div *ngFor="let tempRestaurant of restaurants">
+        <div class="restaurantPic">
+            <img class="restaurantPic__img" src={{tempRestaurant.imageUrl}} alt={{tempRestaurant.restaurantName}}>
+                <div class="restaurantPic__overlay restaurantPic__overlay--blur" routerLink="/restaurant/{{tempRestaurant.id}}">
+                    <div class="restaurantPic__title">{{tempRestaurant.restaurantName}}</div>
+                    <p class="restaurantPic__description">{{tempRestaurant.productsCount}} products</p>
+                    <p class="restaurantPic__description">Delivery {{tempRestaurant.deliveryPrice}} ron</p>
+                </div>
+        </div>
+    </div>
+</body>

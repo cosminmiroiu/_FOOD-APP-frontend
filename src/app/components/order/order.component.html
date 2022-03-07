@@ -1,0 +1,120 @@
+<h1 class="pageTitle">
+    <img class="orderPic" src="assets\images\others\order.png" alt="Order">
+    Orders
+</h1>
+
+<div class="pageContent">
+
+    <!-- ACTIVE ORDERS -->
+    <div *ngIf="activeOrders.length > 0" style="display: flex; flex-direction: column; align-items: center; margin-top: 3%;">
+
+        <p class="orderCategory">Active orders</p>
+        <hr>
+
+        <div *ngFor="let tempOrder of activeOrders" class="card" (click)="refreshActiveOrders()">
+
+            <div class="firstCardBlock">
+                <div>
+                    <h5 style="margin-bottom: 10%;"><b>Order id: {{tempOrder.id}}</b></h5>
+                    <h6>Quantity: <strong>{{tempOrder.totalQuantity}}</strong></h6>
+                    <h6>Price: <strong><mark>{{tempOrder.totalPrice | currency: 'RON '}}</mark></strong></h6>
+                    <h6>Placed: <strong>{{getOrderPassedTime(tempOrder.dateCreated)}}</strong></h6>
+                    <h6>Updated: <strong>{{getOrderPassedTime(tempOrder.dateUpdated)}}</strong></h6>
+                </div>
+
+                <div>
+                    <img class="restaurantPic" src="{{getRestaurantImageUrl(tempOrder.restaurantId)}}" alt="Restaurant">
+                </div>
+            </div>
+
+            <div class="statusInfo">
+                <h6 style="text-align: center;"><i><b>{{tempOrder.status}}</b></i></h6>
+                <img src="assets\images\others\progress.gif" alt="Progress">
+            </div>
+
+            <span class="toolTipText">click to refresh</span>
+
+            <img class="infoPic" src="assets\images\others\order-info.png" alt="Order Info" (click)="showOrderDetails(tempOrder.id);">
+
+        </div>
+
+    </div>
+
+    <!-- CLOSED ORDERS -->
+    <div *ngIf="closedOrders.length > 0" style="display: flex; flex-direction: column; align-items: center; margin-top: 3%;">
+
+        <p class="orderCategory">Closed orders</p>
+        <hr>
+
+        <div *ngFor="let tempOrder of closedOrders" class="card">
+
+            <div class="firstCardBlock">
+                <div>
+                    <h5 style="margin-bottom: 10%;"><b>Order id: {{tempOrder.id}}</b></h5>
+                    <h6>Quantity: <strong>{{tempOrder.totalQuantity}}</strong></h6>
+                    <h6>Price: <strong><mark>{{tempOrder.totalPrice | currency: 'RON '}}</mark></strong></h6>
+                    <h6>Placed: <strong>{{getOrderPassedTime(tempOrder.dateCreated)}}</strong></h6>
+                    <h6 *ngIf="tempOrder.status == 'DELIVERED'">Delivered: <strong>{{getOrderPassedTime(tempOrder.dateUpdated)}}</strong></h6>
+                    <h6 *ngIf="isOrderRejected(tempOrder)">Reason: <strong>{{tempOrder.reason}}</strong></h6>
+                </div>
+
+                <div>
+                    <img class="restaurantPic" src="{{getRestaurantImageUrl(tempOrder.restaurantId)}}" alt="Restaurant">
+                </div>
+            </div>
+
+            <div class="statusInfo">
+                <h6 style="text-align: center;"><i><b>{{tempOrder.status}}</b></i></h6>
+            </div>
+
+            <img class="infoPic" src="assets\images\others\order-info.png" alt="Order Info" (click)="showOrderDetails(tempOrder.id);">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- BOOTSTRAP MODAL -->
+<div class="modal fade bd-example-modal-lg" id="orderDetailsModal" tabindex="-1" role="dialog" aria-hidden="true" style="min-width: 800px;">
+    <div class="modal-dialog modal-lg">
+        <div *ngIf="orderDetails.length > 0">
+            <div class="orderDetailsTable">
+                <table class="table" style="font-size:large; vertical-align: baseline;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Product Name</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let tempOrderedProduct of orderDetails">
+                            <td>{{tempOrderedProduct.productName}}</td>
+                            <td><img src="{{tempOrderedProduct.productImageUrl}}" style="height: 100px; width: auto;"></td>
+                            <td>{{tempOrderedProduct.quantity}}</td>
+                            <td><strong>{{tempOrderedProduct.finalPrice | currency: 'RON '}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><button class="button" style="width: 100px; height: 30px; right: 0;" (click)="hideOrderDetails()">Close</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- No orders found -->
+<div id="noOrdersFound" style="display: none;">
+    <div *ngIf="activeOrders.length < 1 && closedOrders.length < 1">
+        <div class="center">
+            <h2 style="font-weight: bold;">No orders have been placed yet!</h2>
+            <h3>Place an order</h3>
+            <button class="button" routerLink="/restaurants">Go to restaurants</button>
+        </div>
+    </div>
+</div>

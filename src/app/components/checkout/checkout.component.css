@@ -1,0 +1,71 @@
+* {
+    font-family: 'Quicksand';
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 136, 0);
+    transform: translateX(-2.3%);
+    font-size: 50px;
+}
+
+.notePic {
+    border-radius: 50%;
+    width: 100px;
+    height: auto;
+    transform: translateX(-30%) translateY(-20%);
+}
+
+.card {
+  box-shadow: 0 0 20px 0 rgb(83, 81, 81);
+  border-radius: 15px;
+  padding: 20px;
+  width: 40%;
+}
+
+span {
+  font-size: large;
+}
+
+.button {
+    background-color: rgb(255, 136, 0);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    height: 35px;
+    font-size: 16px;
+    transition: 0.2s ease-in-out;
+  }
+
+.button:hover {
+    transform: scale(1.05);
+  }
+  
+.button:active {
+    transform: scale(1.2);
+  }
+
+/* order placed */
+
+.linkSuggestionBox {
+    margin-top: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.linkSuggestion {
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(255, 136, 0);
+    cursor: pointer;
+    margin-top: -30px;
+    transition: 0.3s ease-in-out;
+  }
+  
+.linkSuggestion:hover {
+    transform: rotate(-2.5deg) scale(1.1);
+  }

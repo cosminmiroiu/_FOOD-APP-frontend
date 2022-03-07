@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Indie+Flower&family=Poppins:wght@300;600&display=swap');
+
+
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    overflow: hidden;
+    border-radius: 0% 0% 25% 25%/0% 0% 75% 75%;
+    background: linear-gradient(180deg, #ff7300, #fcbb89);
+    box-shadow: 0px 7px 12px 0 rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pageTitle {
+    margin-left: 13%;
+    margin-top: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: "Quicksand";
+    color: white;
+    transition: 0.3s ease-in-out;
+}
+
+.pageTitle:hover {
+    transform: rotate(-2.5deg) scale(1.1);
+}

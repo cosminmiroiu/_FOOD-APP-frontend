@@ -1,0 +1,45 @@
+<h1 class="pageTitle">
+    <img class="restaurantPic" src="{{currentRestaurantImageUrl}}" alt="{{currentRestaurantName}}">
+    {{currentRestaurantName}}
+</h1>
+
+<div class="page-content">
+    <div *ngFor="let tempCategory of productCategories">
+        <div *ngIf="getProductsByCategory(tempCategory).length > 0">
+            <p class="categoryTitle">{{tempCategory.categoryName | titlecase}} category</p>
+            <hr>
+                <!-- product -->
+
+
+
+                <div class="row" style="display: flex; justify-content: center;">
+
+                        <div *ngFor="let tempProduct of getProductsByCategory(tempCategory)" class="card">
+
+                            <div *ngIf="tempProduct.discountPercent > 0">
+                                <span class="dot">-{{tempProduct.discountPercent}}%</span>
+                            </div>
+
+                            <img src="{{tempProduct.imageUrl}}" alt="{{tempProduct.name}}">
+
+                            <h4>{{tempProduct.name}}</h4>
+
+                            <p class="cardDescription">{{tempProduct.description}}</p>
+                            
+                            <p>
+                                <del *ngIf="tempProduct.discountPercent > 0">{{tempProduct.unitPrice | currency: 'RON '}}</del>
+                                <strong> {{tempProduct.applyDiscount() | currency: 'RON '}}</strong>
+                            </p>
+                            
+                            <button class="button" (click)="addToCart(tempProduct)">Add to cart</button>
+
+                        </div>
+                        
+                </div>
+
+
+
+                <!-- /product -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+* {
+    font-family: 'Quicksand';
+    color: black;
+}
+
+.pageTitle {
+    text-align: center;
+    color: rgba(255,165,0,255);
+    font-size: 75px;
+    font-weight: bold;
+  }
+
+.pageContent {
+    overflow: hidden;
+}
+
+.linkSuggestionBox {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.linkSuggestion {
+  display: inline-block;
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(255, 136, 0);
+  cursor: pointer;
+  margin-top: -20px;
+  transition: 0.3s ease-in-out;
+}
+
+.linkSuggestion:hover {
+  transform: rotate(-2.5deg) scale(1.1);
+}
+
+.offerTitle {
+  margin-top: 3%;
+  color: rgb(0, 0, 0);
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* discounted products */
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.4);
+  max-width: 250px;
+  margin: 25px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 40px;
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.restaurantImg {
+  position: absolute;
+  width: 75px;
+  height: auto;
+  right: -5%;
+  top: -6%;
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 0 rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.restaurantImg:hover {
+  transform: scale(1.2);
+}
+
+.productImg {
+  margin-top: 5%;
+  width: 100px;
+  height: auto;
+  max-height: 100px;
+  margin-left: 27%;
+}
+
+.dot {
+  position: absolute;
+  left: 5%;
+  top: 6%;
+  padding-top: 8px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(180deg, #ff8800, #ecb563);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  transform: rotate(315deg);
+}
+
+.addToCartBtn {
+  background-color: #f0a210;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  width: 70%;
+  height: 30px;
+  font-size: 16px;
+  margin-left: 14%;
+  margin-bottom: 5%;
+  transition: 0.2s ease-in-out;
+}
+
+.addToCartBtn:hover {
+  transform: scale(1.1);
+}
+
+.addToCartBtn:active {
+  transform: scale(1.3);
+}

@@ -1,0 +1,162 @@
+<h1 class="pageTitle">
+    <img class="userPic" src="assets\images\login\user.png" alt="User">
+    Login / Register
+</h1>
+
+<div class="container mt-5" style="display: flex; justify-content: center; margin-top: 2%;">
+        <div class="card" id="loginCard" style="border-radius: 15px; padding: 20px; width: 400px;">
+            <!-- <h1 class="cardTitle">Login</h1> -->
+            <form #loginForm="ngForm" id="loginForm" (ngSubmit)="login(loginForm)">
+
+                <small *ngIf="email.touched && !email.valid" style="color: red; font-size: 18px;">Enter email address</small>
+                <input
+                    type="text"
+                    ngModel
+                    name="email"
+                    placeholder="Enter Your Email"
+                    class="form-control mb-3"
+                    required email
+                    #email="ngModel"
+                >
+                
+                <small *ngIf="password.touched && !password.valid" style="color: red; font-size: 18px;">Enter password</small>
+                <input
+                    type="password"
+                    ngModel
+                    name="password"
+                    placeholder="Enter Your password"
+                    class="form-control mb-3"
+                    required
+                    #password="ngModel"
+                >
+
+                <small style="color: red; font-size: 18px;" *ngIf="this.loginRegisterErrorResponse != ''">{{this.loginRegisterErrorResponse}}</small>
+                <input
+                    type="submit"
+                    value="Login"
+                    class="button"
+                    [disabled]="!loginForm.valid"
+                >
+
+            </form>
+
+            <button class="button" style="margin-top: 10px;" (click)="showHideRegister()">New here? Go to registration</button>
+
+        </div>
+    
+        <div class="card" id="registerCard" style="display: none; border-radius: 15px; padding: 20px; width: 400px;">
+            <form #registerForm="ngForm" id="registerForm" (ngSubmit)="register(registerForm)">
+
+                <small *ngIf="email_r.touched && !email_r.valid" style="color: red; font-size: 18px;">Enter email address</small>
+                <input 
+                    type="text"
+                    ngModel
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    class="form-control mb-3"
+                    required email
+                    #email_r="ngModel"
+                >
+
+                <small *ngIf="password_r.touched && !password_r.valid" style="color: red; font-size: 18px;">Enter password</small>
+                <input 
+                    type="password"
+                    ngModel
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    class="form-control mb-3"
+                    required
+                    #password_r="ngModel"
+                >
+
+                <small *ngIf="confirmPassword.touched && !confirmPassword.valid" style="color: red; font-size: 18px;">Confirm password</small>
+                <br *ngIf="confirmPassword.touched && !confirmPassword.valid && confirmPassword.value != password_r.value">
+                <small *ngIf="confirmPassword.touched && confirmPassword.value != password_r.value" style="color: red; font-size: 18px;">Password didn't match</small>
+                <input 
+                    type="password"
+                    ngModel
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    placeholder="Repeat Password"
+                    class="form-control mb-3"
+                    required
+                    #confirmPassword="ngModel"
+                >
+
+                <small *ngIf="firstName.touched && !firstName.valid" style="color: red; font-size: 18px;">Enter first name</small>
+                <input 
+                    type="text"
+                    ngModel
+                    name="firstName"
+                    id="firstName"
+                    placeholder="First Name"
+                    class="form-control mb-3"
+                    required
+                    #firstName="ngModel"
+                >
+
+                <small *ngIf="lastName.touched && !lastName.valid" style="color: red; font-size: 18px;">Enter last name</small>
+                <input 
+                    type="text"
+                    ngModel
+                    name="lastName"
+                    id="lastName"
+                    placeholder="Last Name"
+                    class="form-control mb-3"
+                    required
+                    #lastName="ngModel"
+                >
+
+                <small *ngIf="dateOfBirth.touched && !dateOfBirth.valid" style="color: red; font-size: 18px;">Select birth date</small>
+                <input 
+                    type="date" 
+                    ngModel 
+                    name="dateOfBirth"
+                    id="dateOfBirth"
+                    placeholder="Birth Date"
+                    class="form-control mb-3"
+                    required
+                    #dateOfBirth="ngModel"
+                >
+
+                <small *ngIf="address.touched && !address.valid" style="color: red; font-size: 18px;">Enter address</small>
+                <input 
+                    type="text"
+                    ngModel
+                    name="address"
+                    id="address"
+                    placeholder="Address"
+                    class="form-control mb-3"
+                    required
+                    #address="ngModel"
+                >
+
+                <small *ngIf="phone.touched && !phone.valid" style="color: red; font-size: 18px;">Enter phone number</small>
+                <input 
+                    type="tel"
+                    ngModel
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone Number ex: 0737018919"
+                    class="form-control mb-3"
+                    required
+                    #phone="ngModel"
+                >
+
+                <span style="color: red; font-size: 18px; margin-bottom: 15px;" *ngIf="this.loginRegisterErrorResponse != ''">{{this.loginRegisterErrorResponse}}</span>
+
+                <input 
+                    type="submit"
+                    value="Register"
+                    class="button"
+                    [disabled]="confirmPassword.value != password_r.value || !registerForm.valid"
+                >
+
+            </form>
+
+            <button class="button" style="margin-top: 10px;" (click)="showHideRegister()">Back to login</button>
+
+        </div>
+</div>

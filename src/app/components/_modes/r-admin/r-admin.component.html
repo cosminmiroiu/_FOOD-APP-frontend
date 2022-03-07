@@ -1,0 +1,152 @@
+<!-- HEADER -->
+<div class="pageHeader">
+    <div class="imgTitle">
+        <img src="{{restaurant.imageUrl}}" alt="Restaurant Admin">
+        <span>Food App - Restaurant Admin Mode</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 2%;">
+        <mark style="background-color: rgb(255, 212, 196);">
+            <span style="font-size: 20px;">Logged in as {{userFullName}}</span>
+        </mark>
+
+        <span class="logoutSpan" (click)="logout()">
+            Logout
+        </span>
+    </div>
+</div>
+
+<!-- UTILITY BAR -->
+<div class="utilityBar">
+
+    <input type="checkbox" id="autoRefresh" checked class="checkbox" (click)="autoRefresh()">
+    <label for="autoRefresh" id="refreshLabel" class="checkboxLabel" style="width: 175px;">Auto refresh ( {{refreshTime}} sec )</label>
+
+    <span style="margin-left: auto;"><b>Today order totals</b></span>
+
+    <hr>
+
+    <span>Placed by clients: <b>{{allOrdersToday}}</b></span>
+
+    <hr>
+
+    <span>Accepted by couriers: <b>{{acceptedOrdersTodayByCouriers}}</b></span>
+
+    <hr>
+
+    <span>Delivering / Delivered: <b>{{deliveringOrdersRightNow}} / {{deliveredOrdersTodayByCouriers}}</b></span>
+
+    <hr>
+
+    <span style="margin-right: 1%;">Rejected: <b>{{rejectedOrdersToday}}</b></span>
+
+</div>
+
+
+<div class="utilityBar" style="top: -2px;">
+
+    <span style="font-size: 18px;">Display orders:</span>
+
+    <input type="radio" id="all" name="displayOrders" checked class="checkbox" (click)="this.unselectAll();">
+    <label for="all" class="checkboxLabel">All active orders</label>
+
+    <input type="radio" id="notAccepted" name="displayOrders" unchecked class="checkbox" (click)="this.unselectAll();">
+    <label for="notAccepted" class="checkboxLabel">Not accepted by courier yet</label>
+
+    <input type="radio" id="accepted" name="displayOrders" unchecked class="checkbox" (click)="this.unselectAll();">
+    <label for="accepted" class="checkboxLabel">Accepted by courier (to prepare)</label>
+
+</div>
+
+
+<!-- PRINCIPAL CONTAINER (ACTIVE ORDERS + ORDER DETAILS) -->
+<div class="principalContainer">
+
+    <!-- ACTIVE ORDERS CONTAINER -->
+    <div class="ordersContainer">
+
+        <h2 class="containerTitle">
+            Active Orders
+        </h2>
+
+        <h4 *ngIf="activeOrders.length < 1" style="text-align: center; margin-bottom: 25px;">
+            No active orders right now. Stay focus.
+        </h4>
+
+        <div *ngIf="activeOrders.length > 0" class="row">
+
+            <div *ngFor="let tempOrder of getOrders()" class="orderCard">
+
+                <h5 style="font-size: 22px; margin-bottom: 20px; text-align: center;">
+                    <b>Order {{tempOrder.id}}</b>
+                </h5>
+
+                <h6>
+                    Qty: <strong>{{tempOrder.totalQuantity}}</strong>
+                </h6>
+
+                <h6>
+                    Price: <strong>{{tempOrder.totalPrice | currency: 'RON '}}</strong>
+                </h6>
+
+                <h6>
+                    Placed: <strong>{{getOrderPassedTime(tempOrder.dateCreated)}}</strong>
+                </h6>
+
+                <button *ngIf="tempOrder.status != 'DELIVERING...'" class="button" (click)="refreshOrders()">Reject Order</button>
+
+                <div class="details" (click)="displayOrderDetails(tempOrder)"></div>
+
+                <div *ngIf="tempOrder.status != 'PREPARING...'" class="normalShadow"></div>
+
+                <div *ngIf="tempOrder.status === 'PREPARING...'" class="redShadow"></div>
+
+                <div *ngIf="tempOrder.selected" class="selected">
+                    SELECTED
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- ORDER DETAILS CONTAINER -->
+    <div class="orderDetailsContainer">
+
+        <h2 class="containerTitle">
+            Order Details
+        </h2>
+
+        <h4 *ngIf="orderDetails.length < 1" style="text-align: center; margin-bottom: 25px;">
+            Select any order to view details.
+        </h4>
+
+        <div *ngIf="orderDetails.length > 0">
+
+            <div class="orderDetailsTable">
+
+                <table class="table" style="font-size:large; vertical-align: baseline;">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let tempOrderedProduct of orderDetails">
+                            <td>{{tempOrderedProduct.productName}}</td>
+                            <td>{{tempOrderedProduct.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

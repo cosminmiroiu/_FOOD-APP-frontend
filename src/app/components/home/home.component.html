@@ -1,0 +1,48 @@
+<h1 class="pageTitle">it's <img src="\assets\images\others\time.png" alt="Time" style="width: 125px;"> to eat</h1>
+
+<div class="pageContent">
+
+        <div class="linkSuggestionBox">
+            <div *ngIf="isUserLoggedIn()" style="text-align: center;">
+                <h2 style="color: black; font-size: 50px; font-weight: bold; padding-left: 2.5%;">hungry? <img style="width: 30px; padding-top: 50px;" src="assets\images\others\arrow.png" alt="Arrow"></h2>
+                <h2 class="linkSuggestion" routerLink="/restaurants">go to restaurants</h2>
+            </div>
+
+            <div *ngIf="!isUserLoggedIn()" style="text-align: center;">
+                <h2 style="color: black; font-size: 50px; font-weight: bold; padding-left: 2.5%;">let's start <img style="width: 30px; padding-top: 50px;" src="assets\images\others\arrow.png" alt="Arrow"></h2>
+                <h2 class="linkSuggestion" routerLink="/login">go to login/register</h2>
+            </div>
+
+            <div *ngIf="!isUserLoggedIn()" style="text-align: center;">
+                <h2 style="color: black; font-size: 50px; font-weight: bold; padding-left: 2.5%;">or.. <img style="width: 30px; padding-top: 50px;" src="assets\images\others\arrow.png" alt="Arrow"></h2>
+                <h2 class="linkSuggestion" routerLink="/restaurants">check restaurants</h2>
+            </div>
+        </div>
+
+        <h2 class="offerTitle">
+            today's offers
+        </h2>
+
+        <div class="row" style="display: flex; justify-content: center; padding: 0px 175px;">
+
+            <div *ngFor="let tempProduct of discountedProducts" class="card">
+
+                <div *ngIf="tempProduct.discountPercent > 0">
+                    <span class="dot">-{{tempProduct.discountPercent}}%</span>
+                </div>
+
+                <img class="restaurantImg" src="{{tempProduct.restaurant.imageUrl}}"
+                    alt="{{tempProduct.restaurant.restaurantName}}" routerLink="/restaurant/{{tempProduct.restaurant.id}}">
+
+                <img class="productImg" src="{{tempProduct.imageUrl}}" alt="{{tempProduct.name}}">
+
+                <h4>{{tempProduct.name}}</h4>
+
+                <p><del>{{tempProduct.unitPrice | currency: 'RON '}}</del><strong> {{tempProduct.applyDiscount() | currency: 'RON '}}</strong></p>
+
+                <button class="addToCartBtn" (click)="addToCart(tempProduct)">Add to cart</button>
+
+            </div>
+        </div>
+
+</div>

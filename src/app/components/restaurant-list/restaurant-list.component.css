@@ -1,0 +1,96 @@
+* {
+  font-family: 'Quicksand';
+}
+
+.pageTitle {
+  display: flex;
+  justify-content: center;
+  color: rgba(255,165,0,255);
+  transform: translateX(-2.3%);
+  font-size: 50px;
+}
+  
+.cutleryPic {
+  border-radius: 50%;
+  width: 100px;
+  height: auto;
+  transform: translateX(-30%) translateY(-20%);
+  }
+  
+.container {
+    display: flex;
+    margin-top: 100px;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+  }
+
+  
+
+.restaurantPic {
+    position: relative;
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 250px;
+    transition: 0.1s;
+    box-shadow: 0px 0px 30px 0 black;
+  }
+
+.restaurantPic:hover {
+    transform:scale(1.1);
+  }
+
+.restaurantPic__img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+  }
+
+.restaurantPic__overlay {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-family: 'Quicksand';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+.restaurantPic__overlay--blur {
+    backdrop-filter: blur(5px);
+  }
+
+.restaurantPic__overlay > * {
+    transform: translateY(60px);
+    transition: transform 0.25s;
+  }
+
+.restaurantPic__overlay:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+.restaurantPic__overlay:hover > * {
+    transform: translateY(0);
+  }
+
+.restaurantPic__title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+
+.restaurantPic__description {
+    font-size: 1.25em;
+    margin-bottom: 10px
+  }

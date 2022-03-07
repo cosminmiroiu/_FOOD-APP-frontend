@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face{
+    font-family: "Quicksand";
+    src: local("Quicksand"), url(/assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Balsamiq";
+    src: local("Balsamiq"),  url(/assets/fonts/Balsamiq/BalsamiqSans-Regular.ttf) format("truetype");
+}
