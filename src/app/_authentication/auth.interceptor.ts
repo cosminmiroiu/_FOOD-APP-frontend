@@ -51,6 +51,7 @@ export class AuthInterceptor implements HttpInterceptor {
             alert("Server not responding.\n\n1. Check your internet connection\n2. Try to refresh the page.");
             return throwError(error);
           } else if (error.status === 400) {
+            alert(error.error.message);
             return next.handle(request);
           }
          

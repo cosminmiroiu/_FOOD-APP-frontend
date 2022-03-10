@@ -34,7 +34,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cartService.getTotalQuantity() > 0) {
-      this.getRestaurantDeliveryPrice();
+      this.getRestaurant();
       this.getCartTotals();
       this.getUserInfo();
     } else {
@@ -90,7 +90,7 @@ export class CheckoutComponent implements OnInit {
     this.userAddress = this.authService.getUserAddress();
   }
 
-  getRestaurantDeliveryPrice() {
+  getRestaurant() {
     this.restaurantService.getRestaurantByRestaurantId(this.cartService.getCurrentRestaurantId()).pipe(take(1)).subscribe({
       next: restaurantData => {
         this.restaurant = restaurantData;

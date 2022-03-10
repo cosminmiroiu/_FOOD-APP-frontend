@@ -11,8 +11,7 @@ export class MenuComponent implements OnInit {
 
   loggedIn: boolean = false;
 
-  constructor(private userService: AuthService,
-              private router: Router) { }
+  constructor(private userService: AuthService) { }
 
   ngOnInit(): void {
     this.updateLoginStatus();

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.loginSuccess();
       },
       error: (error) => {
-        if (error.status === 400) {
+        if (error.status === 303) {
           this.loginRegisterErrorResponse = error.error.message;
         }
       }
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.showHideRegister();
       },
       error: error => {
-        if (error.status === 0) {
+        if (error.status === 303) {
           this.loginRegisterErrorResponse = error.error.message;
         }
       }
@@ -74,18 +74,18 @@ export class LoginComponent implements OnInit {
 
   showHideRegister() {
 
+    let loginForm = <HTMLFormElement>document.getElementById("loginForm");
+    let registerForm = <HTMLFormElement>document.getElementById("registerForm");
+    loginForm.reset();
+    registerForm.reset();
     this.loginRegisterErrorResponse = "";
     
     if (document.getElementById("loginCard").style.display == "none") {
       document.getElementById("loginCard").style.display = "flex";
       document.getElementById("registerCard").style.display = "none";
-      let loginForm = <HTMLFormElement>document.getElementById("loginForm");
-      loginForm.reset();
     } else {
       document.getElementById("loginCard").style.display = "none";
       document.getElementById("registerCard").style.display = "flex";
-      let registerForm = <HTMLFormElement>document.getElementById("registerForm");
-      registerForm.reset();
     }
   }
 

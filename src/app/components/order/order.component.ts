@@ -29,8 +29,8 @@ export class OrderComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.listOrders();
     this.orderDetailsModal = new window.bootstrap.Modal(document.getElementById("orderDetailsModal"));
+    this.listOrders();
   }
 
   listOrders() {
@@ -75,15 +75,11 @@ export class OrderComponent implements OnInit {
   }
 
   getOrderedProductsByOrderId(orderId: number) {
+    this.orderDetails = [];
     this.orderService.getOrderedProductsByOrderId(orderId).pipe(take(1)).subscribe({
       next: (data: any) => {
         this.orderDetails = data;
         this.orderDetailsModal.show();
-      },
-      error: error => {
-        if (error.status === 400) {
-          alert(error.error.message);
-        }
       }
     });
   }
