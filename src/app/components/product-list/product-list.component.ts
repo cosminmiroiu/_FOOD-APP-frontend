@@ -27,8 +27,21 @@ export class ProductListComponent implements OnInit {
               private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.getProducts();
     this.getProductCategories();
+    this.getProducts();
+  }
+
+  getProductCategories() {
+
+    this.categoryService.getProductCategories().pipe(take(1)).subscribe(
+      data => {
+        if (data.length > 0) {
+          this.productCategories = data;
+        } else {
+          this.router.navigate(['/restaurants']);
+        }
+      }
+    );
   }
 
   getProducts() {
@@ -50,22 +63,9 @@ export class ProductListComponent implements OnInit {
         }
       });
     } else {
-      // go to home page if route doesn't have param id / valid param id
+      // go to restaurant page if route doesn't have param id / valid param id
       this.router.navigate(['/restaurants']);
     }
-  }
-
-  getProductCategories() {
-
-    this.categoryService.getProductCategories().pipe(take(1)).subscribe(
-      data => {
-        if (data.length > 0) {
-          this.productCategories = data;
-        } else {
-          this.router.navigate(['/restaurants']);
-        }
-      }
-    );
   }
 
   getProductsByCategory(productCategory: ProductCategory): Product[] {
