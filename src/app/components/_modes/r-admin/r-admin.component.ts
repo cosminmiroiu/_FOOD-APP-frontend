@@ -178,6 +178,7 @@ export class RAdminComponent implements OnInit {
       },
       error: error => {
         alert("Error while trying to display order details.\nPlease retry.");
+        this.unselectAll();
       }
     });
   }
