@@ -32,7 +32,8 @@ export class AuthService {
         this.loggedIn.next(true);
         this.autoLogout(expirationDate.getTime() - now.getTime());
       } else {
-        this.logout('/home');
+        alert("Authentication session expired.\nPlease re-login.")
+        this.logout('/login');
       }
     }
   }
@@ -74,7 +75,7 @@ export class AuthService {
 
   autoLogout(expirationTimeValue: number) {
     setTimeout(() => {
-      alert("Session expired.\nPlease relogin.");
+      alert("Authentication session expired.\nPlease relogin.");
       this.logout('/login');
     }, expirationTimeValue);
   }
