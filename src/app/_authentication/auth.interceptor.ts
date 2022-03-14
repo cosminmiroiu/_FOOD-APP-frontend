@@ -43,6 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
           if(error.status === 401) {
             this.authService.logout("/login");
             alert("Authentication not valid. Please re-login.");
+            console.log(error);
             return throwError(error);
           } else if (error.status === 403) {
             this.router.navigate(['/forbidden']);
@@ -52,6 +53,8 @@ export class AuthInterceptor implements HttpInterceptor {
             return throwError(error);
           } else if (error.status === 400) {
             alert(error.error.message);
+            return next.handle(request);
+          } else if (error.status === 303) {
             return next.handle(request);
           }
          
