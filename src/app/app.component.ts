@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
           alert("There is a problem with the current logged in user.\nPlease contact Administrator.\n\nLogging out..");
           this.authService.logout("/home");
       }
-    } else if (!(this.authService.isUserLoggedIn()) && !(this.userRole === "")) {
+    } else if (!(this.authService.isUserLoggedIn()) && (this.userRole != "")) {
       alert("There is a problem with the current user info.\nPlease contact Administrator.\n\nLogging out..");
       this.authService.logout("/home");
     }

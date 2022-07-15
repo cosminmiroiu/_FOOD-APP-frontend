@@ -92,7 +92,7 @@ export class CartService {
     this.totalQuantity.next(totalQuantityValue);
     this.totalPriceValue.next(totalPriceValue);
 
-    // save details to local storage
+    // save cart details to local storage
     this.saveCartItems();
   }
 
